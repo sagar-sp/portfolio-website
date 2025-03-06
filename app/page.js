@@ -1,101 +1,175 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React from "react";
+import { FaGithub, FaLinkedin, FaMedium } from "react-icons/fa";
+import jsPDF from "jspdf";
+
+const portfolioData = {
+  name: "Sagar Patil",
+  title: "Software Engineer | React & Next.js Developer",
+  email: "sagarpatil23399@gmail.com",
+  phone: "+91-9822913404",
+  github: "https://github.com/sagar-sp",
+  linkedin: "https://linkedin.com/in/sagar-patil-89326b1b3",
+  medium: "https://medium.com/@sagarpatil",
+  skills: [
+    "React.js",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "Redux",
+    "Material UI",
+    "Chakra UI",
+    "Ant Design",
+    "Tailwind CSS",
+    "Node.js",
+    "MySQL",
+    "GA4",
+    "MixPanel",
+    "Mapbox",
+    "Stripe",
+    "Three.js",
+  ],
+  experience: [
+    {
+      company: "Apptware Solutions LLP, Pune",
+      role: "Software Engineer",
+      duration: "March 2022 – Present",
+      description: [
+        "Developed and deployed scalable web applications using React.js and Next.js.",
+        "Reduced page load time by 30% through performance optimizations.",
+        "Implemented third-party integrations like GA4, MixPanel, Mapbox, Stripe, and Three.js for enhanced functionality.",
+        "Collaborated with cross-functional teams in an Agile environment.",
+      ],
+    },
+  ],
+  projects: [
+    {
+      name: "i2i Therapy",
+      description:
+        "Built a HIPAA-compliant platform supporting 5,000+ therapy sessions monthly.",
+      tools: ["React.js", "Material UI", "Webrtc"],
+    },
+    {
+      name: "Mfund Plus",
+      description:
+        "Contributed to a wealth management platform handling $10M+ in client investments.",
+      tools: ["React.js", "Redux", "Ant Design"],
+    },
+    {
+      name: "Roomie",
+      description:
+        "Developed an e-commerce platform for universities to personalize virtual rooms.",
+      tools: [
+        "Next.js",
+        "React.js",
+        "Material UI",
+        "Chakra UI",
+        "Stripe",
+        "Three.js",
+        "GA4",
+        "MixPanel",
+        "Mapbox",
+      ],
+    },
+  ],
+  education: [
+    "M.Sc. (Computer Science) - Dr. D. Y. Patil ACS College Pimpri, Pune",
+    "B.Sc. (Computer Science) - Dr. D. Y. Patil ACS College Pimpri, Pune",
+  ],
+  achievements: [
+    "Published technical articles on Medium about React and Next.js.",
+    "Mentored junior developers in React best practices.",
+    "Achieved high client satisfaction scores in project evaluations.",
+    "Successfully integrated third-party tools like GA4, MixPanel, Mapbox, Stripe, and Three.js into large-scale applications.",
+  ],
+};
+
+const Portfolio = () => {
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+    <div className="min-h-screen bg-gray-900 text-white p-8">
+      <div className="max-w-4xl mx-auto bg-gray-800 shadow-xl rounded-lg p-8">
+        <h1 className="text-4xl font-bold text-white">{portfolioData.name}</h1>
+        <p className="text-lg text-gray-300">{portfolioData.title}</p>
+        <div className="mt-4 flex space-x-6 text-gray-400">
+          <a href={portfolioData.github} target="_blank">
+            <FaGithub size={30} />
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+          <a href={portfolioData.linkedin} target="_blank">
+            <FaLinkedin size={30} />
+          </a>
+          <a href={portfolioData.medium} target="_blank">
+            <FaMedium size={30} />
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <div className="mt-6">
+          <h2 className="text-2xl font-semibold text-white">Skills</h2>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {portfolioData.skills.map((skill) => (
+              <span
+                key={skill}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md text-sm"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-6">
+          <h2 className="text-2xl font-semibold text-white">Experience</h2>
+          {portfolioData.experience.map((exp, index) => (
+            <div key={index} className="mt-4 p-4 bg-gray-700 rounded-lg">
+              <h3 className="text-lg font-bold text-white">{exp.company}</h3>
+              <p className="text-sm text-gray-300">
+                {exp.role} ({exp.duration})
+              </p>
+              <ul className="list-disc ml-6 mt-2 text-gray-300">
+                {exp.description.map((desc, i) => (
+                  <li key={i}>{desc}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6">
+          <h2 className="text-2xl font-semibold text-white">Projects</h2>
+          {portfolioData.projects.map((project, index) => (
+            <div key={index} className="mt-4 p-4 bg-gray-700 rounded-lg">
+              <h3 className="text-lg font-bold text-white">{project.name}</h3>
+              <p className="text-gray-300">{project.description}</p>
+              <p className="text-sm text-gray-400">
+                Tools: {project.tools.join(", ")}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6">
+          <h2 className="text-2xl font-semibold text-white">Education</h2>
+          <ul className="list-disc ml-6 mt-2 text-gray-300">
+            {portfolioData.education.map((edu, index) => (
+              <li key={index}>{edu}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-6">
+          <h2 className="text-2xl font-semibold text-white">Achievements</h2>
+          <ul className="list-disc ml-6 mt-2 text-gray-300">
+            {portfolioData.achievements.map((ach, index) => (
+              <li key={index}>{ach}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default Portfolio;
